@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "dev": "dev-convert-web2mobile-app",
+    "prod": "convert-web2mobile-app"
+  }
+}

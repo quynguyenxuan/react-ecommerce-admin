@@ -1,0 +1,29 @@
+name: Deploy to Live Channel
+
+on:
+  push:
+    branches:
+      - master
+  # pull_request:
+  #   branches:
+  #     - master
+    # Optionally configure to run only for specific files. For example:
+    # paths:
+    # - "website/**"
+
+jobs:
+  deploy_live_website:
+    runs-on: ubuntu-latest
+    env:
+      APP_MODE: prod
+    steps:
+      - uses: actions/checkout@v2
+      # Add any build steps here. For example:
+      - run: npm install && CI=false npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          expires: 30d
+          projectId: convert-web2mobile-app
+          channelId: live
