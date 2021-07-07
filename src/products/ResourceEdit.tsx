@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { FC } from 'react';
 import {
+  BooleanInput,
   Datagrid,
   DateField,
   DateInput,
@@ -57,42 +58,41 @@ const ResourceEdit: FC<EditProps> = props => {
           label="resources.apps.tabs.details"
           contentClassName={classes.tab}
         >
-          <TextInput source="title" fullWidth validate={requiredValidate} />
-          <CustomImageInput source="image" dirPath="images"/>
-          <RichTextInput source="shortDescription" fullWidth/>
-          <RichTextInput
-            source="description"
-            label="Description"
-            validate={requiredValidate}
-          />
-          
-          <ReferenceArrayInput
-            source="categoryIds"
-            reference={COLLECTION_CATEGORY}
-          >
-            <SelectArrayInput optionText="title" />
-          </ReferenceArrayInput>
-          <ReferenceArrayInput source="tagIds" reference={COLLECTION_TAG}>
-            <SelectArrayInput optionText="title" />
-          </ReferenceArrayInput>
-          <NumberInput source="priority" />
-          <TextInput source="iosBundleId" />
-          <TextInput source="androidApplicationId" />
-
+          <TextField label="id" source="id" />
+          <TextInput source="name" />
+          <TextInput source="name_with_slug" />
+          <BooleanInput source="featured" />
+          <BooleanInput source="publish_ready" />
+          <TextInput source="made_country" />
+          <NumberInput source="category_id" />
+          <TextInput source="gender" />
           <JsonInput
-            source="metadata"
+            source="main_image"
             // addLabel={true}
-            jsonString={false} // Set to true if the value is a string, default: false
-            reactJsonOptions={{
-              // Props passed to react-json-view
-              src: {},
-              name: null,
-              collapsed: true,
-              enableClipboard: false,
-              displayDataTypes: true,
-            }}
-          />
-          {/* <CustomImageInput source="metadata.icon" dirPath="icons"/> */}
+            jsonString={true}
+            />
+          <TextInput source="description" />
+          <NumberInput source="code" />
+          <NumberInput source="position" />
+          <JsonInput
+            source="color_variations_sorter"
+            // addLabel={true}
+            jsonString={true}
+            />
+          <TextInput source="product_properties" />
+          <JsonInput
+            source="seo"
+            // addLabel={true}
+            jsonString={true}
+            />
+          <TextInput source="version_name" />
+          <TextInput source="version_priority" />
+          <NumberInput source="price" />
+          <NumberInput source="scheduled_event_id" />
+          <DateInput source="scheduled_end_at" />
+          <DateInput source="updated_at" />
+          <DateInput source="updated_at" />
+          <DateField source="created_at" />
         </FormTab>
       </TabbedForm>
     </Edit>

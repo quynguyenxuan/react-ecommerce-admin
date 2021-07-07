@@ -4,22 +4,16 @@ import {
   Admin,
   Resource,
   DataProvider,
+  AuthProvider,
   usePermissions,
   useGetPermissions,
 } from 'react-admin';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 
-// import { authProvider } from './authProvider';
 import themeReducer from './themeReducer';
 import { Login, Layout, NewLogin, FirebaseLogin } from './layout';
-// import { Dashboard } from './dashboard';
 import customRoutes from './routes';
 import englishMessages from './i18n/en';
-import {
-  FirebaseDataProvider,
-  FirebaseAuthProvider,
-} from 'react-admin-firebase';
-// import { firebaseConfig } from './authProvider';
 import products from './products';
 
 import {
@@ -40,6 +34,7 @@ const i18nProvider = polyglotI18nProvider(locale => {
 interface AppProps {
   onUnmount: () => void;
   dataProvider: DataProvider;
+  authProvider: AuthProvider;
 }
 
 const App = (props: AppProps) => {
@@ -50,21 +45,14 @@ const App = (props: AppProps) => {
   }, [onUnmount]);
 
   console.log('App', props);
-  const options = {
-    logging: true,
-    rootRef: 'root_collection/some_document',
-    watch: ['products', 'categories'],
-    dontwatch: ['users']
-  };
-  const dataProvider = FirebaseDataProvider(firebaseConfig, options);
-  const authProvider = FirebaseAuthProvider(firebaseConfig, options);
+  
   return (
     <Admin
       title="Web2Mobile Admin"
-      dataProvider={dataProvider}
+      dataProvider={props.dataProvider}
       customReducers={{ theme: themeReducer }}
       customRoutes={customRoutes}
-      authProvider={authProvider}
+      authProvider={props.authProvider}
       dashboard={Dashboard}
       loginPage={FirebaseLogin}
       layout={Layout}

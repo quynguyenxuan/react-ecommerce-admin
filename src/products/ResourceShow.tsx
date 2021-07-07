@@ -29,6 +29,7 @@ import {
   ReferenceField,
   FunctionField,
   CreateButton,
+  BooleanField,
 } from 'react-admin';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -69,52 +70,42 @@ const ResourceShow: FC<ShowProps> = props => {
   const classes = useStyles();
   return (
     <Show {...props}>
-      <TabbedForm  redirect="show"  toolbar={<CustomToolbar />}>
+      <TabbedForm redirect="show" toolbar={<CustomToolbar />}>
         <FormTab
           label="resources.apps.tabs.details"
           contentClassName={classes.tab}
         >
-          <TextField source="id" />
-        
-          
-          <TextField source="title" />
-          <ImageField source="image" />
-          <RichTextField source="shortDescription" />
-          <RichTextField source="description" />
-        
-          {/* <CustomArrayField source="categoryIds" fullWidth reference={COLLECTION_CATEGORY}/>
-          <CustomArrayField source="tagIds" fullWidth reference={COLLECTION_TAG}/> */}
-          {/* <TextField
-            source="categoryIds"
-            formClassName={classes.dInlineBlock}
-          />
-          <TextField source="tagIds" formClassName={classes.dInlineBlock} /> */}
-          <NumberField source="priority" />
-          <TextField
-            source="iosBundleId"
-            formClassName={classes.dInlineBlock}
-          />
-          <TextField
-            source="androidApplicationId"
-            formClassName={classes.dInlineBlock}
-          />
+          <TextField label="id" source="id" />
+          <TextField source="name" />
+          <TextField source="name_with_slug" />
+          <BooleanField source="featured" />
+          <BooleanField source="publish_ready" />
+          <TextField source="made_country" />
+          <NumberField source="category_id" />
+          <TextField source="gender" />
           <JsonField
-            source="metadata"
-            addLabel={true}
-            jsonString={false} // Set to true if the value is a string, default: false
-            reactJsonOptions={{
-              // Props passed to react-json-view
-              src: {},
-              name: null,
-              collapsed: true,
-              enableClipboard: false,
-              displayDataTypes: true,
-            }}
-          />
-          <ImageField source="metadata.icon" />
-          <DateField source="createdAt" formClassName={classes.dInlineBlock} />
-          <DateField source="updatedAt" formClassName={classes.dInlineBlock} />
-          
+            source="main_image"
+            // addLabel={true}
+            jsonString={true}
+            />
+          <TextField source="description" />
+          <NumberField source="code" />
+          <NumberField source="position" />
+          <JsonField
+            source="color_variations_sorter"
+            // addLabel={true}
+            jsonString={true}
+            />
+          <TextField source="product_properties" />
+          <TextField source="seo" />
+          <TextField source="version_name" />
+          <TextField source="version_priority" />
+          <NumberField source="price" />
+          <NumberField source="scheduled_event_id" />
+          <DateField source="scheduled_end_at" />
+          <DateField source="updated_at" />
+          <DateField source="updated_at" />
+          <DateField source="created_at" />
         </FormTab>
       </TabbedForm>
     </Show>

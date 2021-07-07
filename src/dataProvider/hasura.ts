@@ -7,9 +7,10 @@ export default () => {
   return buildHasuraProvider(
     {
       client: new ApolloClient<NormalizedCacheObject>({
-        uri: 'http://51.79.140.20:8080/v1/graphql',
+        uri: 'http://localhost:8083/v1/graphql',
         headers: {
           'x-hasura-admin-secret': 'quynguyen',
+          'content-type': 'application/json'
           // 'x-hasura-access-key': 'quynguyen',
           // 'Authorization': `Bearer xxxx`,
         },
